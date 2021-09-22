@@ -1,0 +1,352 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100;300;400;500;600&display=swap");
+
+:root {
+  --color-primary: #7a24b2;
+  --color-secondary: #ed8843;
+  --color-secondary-2: #f5c56c;
+  --color-tertiary: #255ce5;
+  --color-gray-1: #333;
+  --color-gray-2: #777;
+  --color-white: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Lexend", sans-serif;
+  font-size: 62.5%;
+}
+
+.container {
+  background-color: #fafafa;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app {
+  height: 60rem;
+  width: 32rem;
+  overflow: hidden;
+  border-radius: 2rem;
+  position: relative;
+}
+
+.home,
+.gameplay,
+.result,
+.replay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-image: url("../assets/background.svg");
+  transition: all 0.2s;
+}
+
+.home {
+  z-index: 1000;
+}
+
+.home--hidden {
+  left: -100%;
+}
+
+.home__logo {
+  width: 12em;
+  position: absolute;
+}
+
+.home__logo--1 {
+  animation: toRight 1s;
+}
+
+.home__logo--2 {
+  animation: toLeft 1s;
+}
+
+@keyframes toRight {
+  0% {
+    transform: translateX(-3rem);
+  }
+  70% {
+    transform: translateX(1rem);
+  }
+}
+
+@keyframes toLeft {
+  0% {
+    transform: translateX(3rem);
+  }
+  70% {
+    transform: translateX(-1rem);
+  }
+}
+
+.btn {
+  cursor: pointer;
+  font-family: "Lexend", sans-serif;
+  font-weight: 700;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  padding: 1.2rem 2.6rem;
+  border: none;
+  border-radius: 10rem;
+  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-0.6rem);
+}
+
+.btn:active {
+  transform: translateY(-0.3rem);
+}
+
+.btn--home {
+  margin-top: auto;
+  margin-bottom: 6rem;
+}
+
+.gameplay {
+  z-index: 100;
+}
+
+.gameplay--hidden {
+  left: -100%;
+}
+
+.gameplay__container {
+  width: 29rem;
+  height: 46rem;
+  background-color: var(--color-white);
+  border-radius: 1.5rem;
+  z-index: 150;
+  padding: 2.5rem;
+  display: grid;
+  grid-template-rows: 3rem 5rem 1fr 1fr;
+}
+
+.gameplay__container--1,
+.gameplay__container--2 {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.3);
+  height: 46rem;
+  border-radius: 1.5rem;
+  z-index: 140;
+}
+
+.gameplay__container--1 {
+  width: 27rem;
+  transform: translateY(0.7rem);
+}
+
+.gameplay__container--2 {
+  width: 25rem;
+  transform: translateY(1.5rem);
+}
+
+.gameplay__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gameplay__timer-container {
+  position: relative;
+}
+
+.gameplay__timer {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.gameplay__timer-container,
+.gameplay__question-container,
+.gameplay__question-number-container,
+.gameplay__points-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameplay__question-number-icon {
+  width: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+.gameplay__points-container {
+  background-image: linear-gradient(
+    120deg,
+    var(--color-secondary-2),
+    var(--color-secondary)
+  );
+  padding: 0.6rem 1rem;
+  border-radius: 10rem;
+  align-items: end;
+}
+
+.gameplay__points-icon {
+  width: 1.1rem;
+  margin-right: 0.6rem;
+}
+
+.gameplay__points {
+  color: var(--color-white);
+  font-weight: 500;
+}
+
+.gameplay__timer-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4.5rem;
+}
+
+.gameplay__timer-path {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 1000;
+  transform-origin: center;
+  stroke: var(--color-tertiary);
+  animation: pathStroke 90s linear forwards; /* x3s */
+}
+
+@keyframes pathStroke {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.gameplay__question {
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.gameplay__choice {
+  border-radius: 10rem;
+  padding: 1rem;
+  border: 1px solid #e4e4e4;
+  margin-bottom: 1.2rem;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.gameplay__choice:hover {
+  transform: translateY(-0.2rem);
+}
+
+.gameplay__choice:active {
+  transform: translateY(-0.05rem);
+}
+
+.result__container,
+.final-result__container {
+  width: 29rem;
+  height: 41rem;
+  background-color: var(--color-white);
+  border-radius: 1.5rem;
+  z-index: 150;
+  padding: 2.5rem;
+  background-image: url("../assets/popup.svg");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn--result {
+  margin-top: 2.5rem;
+  z-index: 1000;
+}
+
+.result__message {
+  font-size: 1.3rem;
+  color: var(--color-gray-2);
+}
+
+.result__points {
+  font-size: 2rem;
+}
+
+.result__answer {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid #e4e4e4;
+}
+
+.result__question {
+  color: var(--color-gray-2);
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.result__correct {
+  margin-top: 1rem;
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.result__points--bold {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-secondary-2),
+    var(--color-secondary)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.result--hidden {
+  left: 100%;
+}
+
+.final-result__container {
+  background-image: url("../assets/final.svg");
+}
+
+.final-result__icon {
+  width: 8rem;
+  margin-bottom: 1rem;
+}
+
+.final-result__message {
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  color: var(--color-gray-2);
+}
+
+.final-result__points {
+  font-size: 2rem;
+  background-image: linear-gradient(
+    90deg,
+    var(--color-secondary-2),
+    var(--color-secondary)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
